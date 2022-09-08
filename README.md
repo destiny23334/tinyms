@@ -1,11 +1,33 @@
-## 什么都不做的EventLoop
+## TinyMS
 
-EventLoop可以理解为一个事件循环类。这个类负责循环监听感兴趣的事件，tinyms采用one loop per thread。
+这个项目是参考陈硕《Linux多线程服务端编程》这本书和muduo网络库，自己编写的一个网络库
 
-拥有EventLoop的对象的线程叫做IO线程，负责处理IO事件。每个IO线程有且仅有一个EventLoop对象
+- 基于Reactor模式的事件循环机制
+- 多线程网络库
+- 使用epoll高效处理事件请求
+- 只支持Linux和TCP
 
-如何保证一个线程只有一个EventLoop对象？全局变量+__thread。
+做完这个项目后期望的收获
+- 熟悉Linux C++开发
+- 熟悉C++多线程
+- 了解Linux（网络）编程
+- 了解多线程调试方法
+- 加深对多线程和Linux的理解
 
-tinyms用一个全局变量保存当前线程的EventLoop对象。__thread关键字保证了每个线程一个
+## 开发计划
 
+正式版之前有3个大版本
+- 【0.1】实现Reactor框架，定时器等基本功能
+- 【0.2】实现单线程，非阻塞，并发的TCP网络库
+- 【0.3】实现多线程TCP
 
+## 目前进展
+【0.1.0】实现Reactor的基本框架
+- 编写EventLoop类，实现事件循环
+
+【0.1.1】利用epoll实现消息分发机制
+- 编写Channel作为事件处理的回调函数
+- 编写Poll作为事件分发函数
+- 新增Poll更新监听fd事件（进行中）
+- 新增Channel处理fd上发生的事件（进行中）
+- 新增EventLoop退出
