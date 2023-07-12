@@ -4,10 +4,15 @@ project(TinyMS VERSION 0.1.1)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-include_directories(./Include)
+include_directories(./tinyms/Include)
 
-aux_source_directory(./Source SOURCE_FILE)
-aux_source_directory(./ SOURCE_FILE)
+# tinyms
+add_subdirectory(tinyms)
+
+# test
+add_subdirectory(Test)
+
+# example
+add_subdirectory(Example)
 
 
-add_executable(TinyMS ${SOURCE_FILE})
