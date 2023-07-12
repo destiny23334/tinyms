@@ -1,4 +1,7 @@
 cmake-build-debug-wsl/*
-.idea/
+.idea/*
+.vscode/*
 *.ids
 *.ignore
+
+build/*
