@@ -2,11 +2,12 @@
 // Created by zhuka on 2022/9/6.
 //
 
-#ifndef TINYMS__EVENTLOOP_H_
-#define TINYMS__EVENTLOOP_H_
+#ifndef TINYMS_EVENTLOOP_H_
+#define TINYMS_EVENTLOOP_H_
 #include <thread>
 #include <atomic>
 #include <vector>
+#include <memory>
 #include <NonCopyable.h>
 namespace tinyms {
 
@@ -37,7 +38,7 @@ class EventLoop : NonCopyable {
   void updateChannel(Channel *channel);
 
   /**
-   * 如果不是当前，那么
+   * 如果不是当前，那么崩掉
    */
   void assertInLoopThread();
 
@@ -55,7 +56,7 @@ class EventLoop : NonCopyable {
   using ChannelList = std::vector<Channel *>;
   void abortNotInThread();
 
-  Poller *poll_;
+  std::unique_ptr<Poller> poll_;  //
 
   // 因为会在其他线程调用，所以用atomic
   std::atomic<bool> looping_;  // 是否正在进行事件循环
@@ -67,4 +68,4 @@ class EventLoop : NonCopyable {
 
 } // tinyms
 
-#endif //TINYMS__EVENTLOOP_H_
+#endif //TINYMS_EVENTLOOP_H_
