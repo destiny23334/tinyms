@@ -9,7 +9,6 @@ void twoEventLoopTest() {
   tinyms::EventLoop loop2{};
 }
 
-void
 
 int main() {
   twoEventLoopTest();

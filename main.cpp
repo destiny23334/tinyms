@@ -8,5 +8,5 @@ using namespace std;
 
 int main() {
   tinyms::EventLoop loop1;
-  tinyms::EventLoop loop2;
+  cout << "hello" << endl;
 }
